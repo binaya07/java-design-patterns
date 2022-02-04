@@ -4,6 +4,9 @@ import com.designpatterns.creational.AbstractFactory.AbstractFactory;
 import com.designpatterns.creational.AbstractFactory.FactoryProvider;
 import com.designpatterns.creational.AbstractFactory.entities.Building;
 import com.designpatterns.creational.AbstractFactory.entities.MusicalInstrument;
+import com.designpatterns.creational.Builder.Meal;
+import com.designpatterns.creational.Builder.MealBuilder;
+import com.designpatterns.creational.Builder.TodaysSpecialMealBuilder;
 import com.designpatterns.creational.Factory.Vehicle;
 import com.designpatterns.creational.Factory.VehicleFactory;
 import com.designpatterns.creational.Factory.VehicleType;
@@ -15,6 +18,7 @@ public class Creational {
         singleton();
         factory();
         abstractFactory();
+        builder();
     }
 
     /**
@@ -71,5 +75,20 @@ public class Creational {
 
         System.out.println(guitar.play());
         System.out.println(drum.play());
+    }
+
+    /**
+     *
+     * Builder Design Pattern
+     *
+     * 1. Separate the construction of a complex object from its representation so that the same construction process can create different representations.
+     * 2. Parse a complex representation, create one of several targets.
+     */
+    private static void builder() {
+        MealBuilder mealBuilder = new TodaysSpecialMealBuilder();
+        Meal meal = mealBuilder.build();
+
+        System.out.println("meal price : " + meal.calcPrice());
+        meal.displayItems();
     }
 }
