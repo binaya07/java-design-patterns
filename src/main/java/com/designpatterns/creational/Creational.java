@@ -10,6 +10,8 @@ import com.designpatterns.creational.Builder.TodaysSpecialMealBuilder;
 import com.designpatterns.creational.Factory.Vehicle;
 import com.designpatterns.creational.Factory.VehicleFactory;
 import com.designpatterns.creational.Factory.VehicleType;
+import com.designpatterns.creational.Prototype.Shape;
+import com.designpatterns.creational.Prototype.ShapeCache;
 import com.designpatterns.creational.Singleton.SingletonExample;
 
 public class Creational {
@@ -19,6 +21,7 @@ public class Creational {
         factory();
         abstractFactory();
         builder();
+        prototype();
     }
 
     /**
@@ -91,4 +94,27 @@ public class Creational {
         System.out.println("meal price : " + meal.calcPrice());
         meal.displayItems();
     }
+
+    /**
+     * Prototype Design Pattern
+     *
+     * 1. Prototype pattern refers to creating duplicate object while keeping performance in mind.
+     * 2. This pattern involves implementing a prototype interface which tells to create a clone of the current object.
+     * 3. This pattern is used when creation of object directly is costly.
+     *    For example, an object is to be created after a costly database operation. We can cache the object, returns its clone on next request
+     *    and update the database as and when needed thus reducing database calls.
+     */
+    private static void prototype() {
+        ShapeCache.loadCache();
+
+        Shape clonedShape = ShapeCache.getShape("1");
+        System.out.println("Shape : " + clonedShape.getType());
+
+        Shape clonedShape2 = ShapeCache.getShape("2");
+        System.out.println("Shape : " + clonedShape2.getType());
+
+        Shape clonedShape3 = ShapeCache.getShape("3");
+        System.out.println("Shape : " + clonedShape3.getType());
+    }
+
 }
